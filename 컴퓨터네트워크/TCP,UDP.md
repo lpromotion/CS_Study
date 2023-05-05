@@ -26,9 +26,9 @@
   - 양쪽 모두 상대편에 대한 초기 순차 일련번호를 얻을 수 있도록 함
   - 과정  
     <img src="https://user-images.githubusercontent.com/88132500/236444327-a0dbfc6a-2661-4651-a084-117145f565b9.png" width="50%" height="50%"></img>  
-    - [step 1] A 클라이언트는 B 서버에 접속을 요청하는 SYN 패킷을 보냄. 이때 A클라이언트는 SYN 을 보내고 SYN/ACK 응답을 기다리는 SYN_SENT 상태, B서버는 Wait for Client 상태  
+    - [step 1] A 클라이언트는 B 서버에 접속을 요청하는 SYN(요청) 패킷을 보냄. 이때 A클라이언트는 SYN 을 보내고 SYN(요청)/ACK(승인) 응답을 기다리는 SYN_SENT 상태, B서버는 Wait for Client 상태  
     - [step 2] B 서버는 SYN 요청을 받고 A 클라이언트에게 요청을 수락한다는 ACK와 SYN flag가 설정된 패킷을 발송하고 A가 다시 ACK로 응답하기를 기다림. 이때 B 서버는 SYN_RECEIVED 상태가 됨  
-    - [step 3] A 클라이언트는 B 서버에게 ACK를 보내고 이후부터는 연결이 이루어지고 데이터가 오가게 됨. 이때의 B 서버 상태가 ESTABLISHED.  
+    - [step 3] A 클라이언트는 B 서버에게 ACK를 보내고 이후부터는 연결이 이루어지고 데이터가 오가게 됨. 이때의 B 서버 상태가 ESTABLISHED(포트 연결 상태).  
   - *3-way handshaking 과정에서 클라이언트가 서버가 보낸 ACK+SYN을 받지 못하면?*
     - 서버는 클라이언트로부터 확인받았다는 ACK를 받지 못하기 때문에 SYN_RECV상태의 세션이 계속 쌓이게 됨. 이러한 세션이 쌓이면 SYN Backlog가 가득 차게 되며, 결국 더이상 SYN 소켓 정보를 쌓을 수 없어 SYN Drop이 발생함. 즉, SYN Backlog가 가득 차 새로운 세션을 생성하지 못하게 됨.
     - 해결방법 -> 세션을 쌓는 공간의 크기를 더 늘리거나, SYN+ACK의 재전송 횟수를 설정하여 설정한 횟수까지 응답이 없으면 소켓 연결을 끊음
