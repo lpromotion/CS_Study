@@ -23,7 +23,6 @@
 
 - 3-Handshaking
   - 양쪽 모두 데이터를 전송할 준비가 되었다는 것을 보장하고, 실제로 데이터 전달이 시작되기 전에 한쪽이 다른 쪽이 준비되었다는 것을 알 수 있도록 함
-  - 양쪽 모두 상대편에 대한 초기 순차 일련번호를 얻을 수 있도록 함
   - 과정  
     <img src="https://user-images.githubusercontent.com/88132500/236444327-a0dbfc6a-2661-4651-a084-117145f565b9.png" width="50%" height="50%"></img>  
     - [step 1] A 클라이언트는 B 서버에 접속을 요청하는 SYN(요청) 패킷을 보냄. 이때 A클라이언트는 SYN 을 보내고 SYN(요청)/ACK(승인) 응답을 기다리는 SYN_SENT 상태, B서버는 Wait for Client 상태  
